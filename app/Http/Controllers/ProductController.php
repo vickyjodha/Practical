@@ -9,8 +9,11 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+
     public function  Product()
     {
+        $products = Product::all();
+        $categories =  Categorie::all();
         return view('product.addProducts')->with('categories', Categorie::all());
     }
     public function addProduct(addProductRequest $request)
@@ -18,11 +21,10 @@ class ProductController extends Controller
 
         $product = new Product();
         $product->name = $request->name;
-        $product->price = $request->price;
-        $product->categorie = $request->categorie->implode(',');
-        dd($product);
+        $product->Price = $request->price;
+        $product->categorie_id = json_encode($request->categorie);
         $product->save();
 
-        return;
+        return back()->with('message', 'Add product');
     }
 }

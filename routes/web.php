@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController as Home;
 use App\Http\Controllers\ProductController as Product;
+use App\Http\Controllers\DashboardConroller as Dashboard;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,9 +21,9 @@ Route::get('/', function () {
 });
 
 Auth::routes(['verify' => true]);
+// , 'verified'
 Route::middleware('auth')->group(function () {
-    // Route::get('/dashboard ', [Home::class, 'index'])->name('home');
-    Route::view('/dashboard ', 'dashboard')->name('dashboard');
+    Route::get('/dashboard ', [Dashboard::class, 'index'])->name('dashboard');
     Route::get('product/addproduct', [Product::class, 'Product'])->name('addproduct');
     Route::post('product/addproduct', [Product::class, 'addProduct'])->name('products');
 });

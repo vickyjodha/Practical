@@ -16,6 +16,32 @@
 
                     {{ __('You are logged in!') }}
                     <a href="{{ route('addproduct') }}" class="btn btn-primary">Add Product</a>
+
+
+                    @if(!empty($products))
+                    <div>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Product Name</th>
+                                    <th scope="col">Product Price</th>
+                                    <th scope="col">Category Names</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    @foreach($products as $product)
+                                    <td>{{$product->name}}</td>
+                                    <td>{{$product->price}}</td>
+                                    <td>{{$product->categorie_id}}</td>
+                                    @endforeach
+                                </tr>
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                    @endif
                 </div>
             </div>
         </div>
